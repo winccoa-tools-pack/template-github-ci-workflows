@@ -1,9 +1,12 @@
 # PR labeler configuration for CI workflows
 workflows:
-  - '.github/workflows/**'
+  - paths:
+      - '.github/workflows/**'
 
 ci:
-  - 'ci/**'
+  - paths:
+      - 'ci/**'
 
 docs:
-  - 'README.md'
+  - paths:
+      - 'README.md'
