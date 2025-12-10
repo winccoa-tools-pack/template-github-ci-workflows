@@ -1,6 +1,6 @@
 # github-ci-workflows (template)
 
-Reusable workflow that builds and tests Node.js projects. Call via `uses:` from other repos.
+Reusable workflow that ... . Call via `uses:` from other repos.
 
 ## 🏆 Recognition
 
@@ -88,6 +88,23 @@ Dependabot config is included both at the org repo root (`.github/dependabot.yml
 1. Ensure Actions are enabled for the repository.
 2. Add any required secrets under Settings → Secrets → Actions.
 3. Optionally enable branch protection rules to require the validation workflows and CI checks before merging.
-4. Customize the workflows as needed (e.g., the `release.yml` expects `VSCE_PAT` to publish to the Marketplace).
+4. Customize the workflows as needed (e.g., publishing steps expect `VSCE_PAT` to publish to the Marketplace).
 
-If you prefer the workflows to be defensive (skip publish steps when secrets are missing), see the template implementation for examples and adjust as required.
+Note: This template does not include automated build/test (`ci-cd.yml`) or release pipelines by default. It provides labeler, Git Flow helpers and other automation which you can adopt as-is. If you need repo-specific CI or release automation, add your own workflows under `.github/workflows/`.
+
+Manual testing instructions:
+
+- The workflows in `.github/workflows` are intended to be integrated and tested by the repository owner. To test them manually:
+  - Create a feature branch and push it, or open a pull request to trigger PR workflows (labeler, gitflow hooks, etc.).
+  - Inspect the Actions tab for run logs and job names. If a job fails, edit the workflow and push again.
+
+- Packaging locally (create a VSIX locally for manual testing):
+
+```powershell
+# From repository root (Windows PowerShell)
+npm ci
+npx vsce package
+# This produces a .vsix file you can install locally or upload as an artifact
+```
+
+If you prefer publish steps to be conditional, guard them with `if: ${{ secrets.VSCE_PAT != '' }}` so forks and test repos do not attempt to publish.
