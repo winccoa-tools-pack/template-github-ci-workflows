@@ -1,0 +1,9 @@
+# PR labeler configuration (actions/labeler v6)
+workflows:
+  - paths:
+      - '.github/workflows/**'
+
+docs:
+  - paths:
+      - 'README.md'
+      - 'docs/**'
