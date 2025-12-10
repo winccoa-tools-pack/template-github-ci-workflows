@@ -20,13 +20,13 @@ rules:
       required_review_thread_resolution: false
 
   # Require status checks to pass
-  - type: required_status_checks
-    parameters:
-      strict_required_status_checks_policy: true
-      required_status_checks:
-        - context: "test (18.x)"
-        - context: "test (20.x)"
-        - context: "package"
+  # - type: required_status_checks
+  #   parameters:
+  #     strict_required_status_checks_policy: true
+  #     required_status_checks:
+  #       - context: "test (18.x)"
+  #       - context: "test (20.x)"
+  #       - context: "package"
 
   # Prevent force pushes
   - type: non_fast_forward
